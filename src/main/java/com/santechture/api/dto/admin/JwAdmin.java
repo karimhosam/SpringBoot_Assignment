@@ -1,0 +1,58 @@
+package com.santechture.api.dto.admin;
+
+import com.santechture.api.entity.Admin;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.Date;
+
+public class JwAdmin implements UserDetails {
+    private String password;
+    private String username;
+    private Date lastLogOut;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    public JwAdmin(Admin admin) {
+        this.password = admin.getPassword();
+        this.username = admin.getUsername();
+        this.lastLogOut = admin.getLastLogOut();
+    }
+
+    public Date getLastLogOut() {
+        return lastLogOut;
+    }
+}
